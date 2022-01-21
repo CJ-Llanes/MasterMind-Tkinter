@@ -9,6 +9,7 @@ import instructions
 def main():
     # Set Size and position of the window
     height, width, xoffset, yoffset = 670, 450, 400, 20
+    state=0
     window = Tk()
     window.geometry("%dx%d%+d%+d" % (width, height, xoffset, yoffset))
 
@@ -22,14 +23,23 @@ def main():
     ,font=("Ubuntu Condensed", 12, "italic"))
     lbl2.place(x=int(width*2/4)-55, y=height/2-90)
 
+    instructions.stateWindow(window,state)
     # Set buttons and Position
-    englishButton = Button(window, text="English",height=1,width=6, 
-    command = instructions.languageWindow(window,True))
+    englishButton = Button(window, text="English",height=1,width=6,
+    command=lambda *args: instructions.stateWindow(window,1))
+    englishButton.pack()
+    #command = instructions.stateWindow(window,1))
     englishButton.place(x=int(width*1/4), y=height/2-50)
 
     spanishButton = Button(window, text="Spanish",height=1,width=6,
-    command = instructions.languageWindow(window,False))
+    command=lambda *args: instructions.stateWindow(window,2))
+    spanishButton.pack()
+    #command = instructions.stateWindow(window,2))
     spanishButton.place(x=int(width*2/4), y=height/2-50)
+
+    instructions.stateWindow(window,state)
+
+
 
 
     #Configure the row/col of our frame and root window to be resizable and fill all available space
